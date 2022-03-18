@@ -7,8 +7,7 @@ const dbJson = require('../db/db.json')
 
 // /api/notes
 router.get('/notes', (req, res) => {
-    console.log('GET /api/notes')
-    console.log(dbJson)
+    
     res.json(dbJson)
 })
 
@@ -22,8 +21,8 @@ router.post('/notes', (req, res) => {
             title,
             text
         };
-
-        fs.readFile('/notes', 'utf-8', (err, data) => {
+        console.log(process.cwd())
+        fs.readFile('./db/db.json', 'utf-8', (err, data) => {
             if (err) {
                 console.error(err);
             } else {
@@ -32,7 +31,7 @@ router.post('/notes', (req, res) => {
                 parsedNote.push(newNote);
 
                 fs.writeFile(
-                    '/notes',
+                    './db/db.json',
                     JSON.stringify(parsedNote, null, 4),
                     (writeErr) =>
                         writeErr
