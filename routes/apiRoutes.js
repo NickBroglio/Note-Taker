@@ -10,8 +10,9 @@ router.get('/notes', (req, res) => {
     console.log('GET /api/notes')
     console.log(dbJson)
     res.json(dbJson)
-})
+});
 
+// adds new note to db json file
 router.post('/notes', (req, res) => {
     console.info(`${req.method} request received`);
 
@@ -53,6 +54,11 @@ router.post('/notes', (req, res) => {
         res.status(500).json('error in making note')
     }
 })
+
+tips.get('/', (req, res) => {
+    console.info(`${req.method} request received for tips`);
+    readFromFile('./db/tips.json').then((data) => res.json(JSON.parse(data)));
+  });
 
 module.exports = router
 
