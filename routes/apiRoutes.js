@@ -7,7 +7,8 @@ const dbJson = require('../db/db.json')
 
 // /api/notes
 router.get('/notes', (req, res) => {
-    
+    console.log('GET /api/notes')
+    console.log(dbJson)
     res.json(dbJson)
 });
 
@@ -22,7 +23,7 @@ router.post('/notes', (req, res) => {
             title,
             text
         };
-        console.log(process.cwd())
+
         fs.readFile('./db/db.json', 'utf-8', (err, data) => {
             if (err) {
                 console.error(err);
@@ -54,10 +55,7 @@ router.post('/notes', (req, res) => {
     }
 })
 
-tips.get('/', (req, res) => {
-    console.info(`${req.method} request received for tips`);
-    readFromFile('./db/tips.json').then((data) => res.json(JSON.parse(data)));
-  });
+
 
 module.exports = router
 
