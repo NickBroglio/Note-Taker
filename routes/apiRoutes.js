@@ -53,7 +53,15 @@ router.post('/notes', (req, res) => {
     } else {
         res.status(500).json('error in making note')
     }
-})
+});
+
+router.get('/notes', (req, res) => {
+    readFromFile('./db/db.json').then((data) =>
+    console.log(data),
+    res.json(JSON.parse(data))
+      
+    );
+  });
 
 
 
